@@ -15,24 +15,41 @@ var ProfilePic = React.createClass({
 	}
 });
 
-var ProfileName = React.createClass({
-	render:function (){
+var Link = React.createClass({
+	changeURL: function(){
+		location.replace(this.props.href)
+	},
+
+	render: function(){
 		return (
-			<div>
-				<h2>{this.props.name}</h2>
-			</div>	
+			<span 
+				style={{cursor:'pointer'}}
+				onClick={this.changeURL}>
+				{this.props.children}
+			</span>
 		)
 	}
+
 });
 
 var ProfileLink = React.createClass({
 	render:function (){
 		return (
-			<div>
-				<a href={'github.com/'+this.props.username}>
-					<h1>{this.props.username}</h1>
+			<Link>
+				<a href={'https://github.com/'+this.props.username}>
+					<h2>{this.props.username}</h2>
 				</a>
-			</div>
+			</Link>
+		)
+	}
+});
+
+var ProfileName = React.createClass({
+	render:function (){
+		return (
+			<div>
+				<h3>{this.props.name}</h3>
+			</div>	
 		)
 	}
 });
@@ -42,8 +59,8 @@ var Avatar = React.createClass({
 		return (
 			<div>
 				<ProfilePic imageUrl={this.props.user.image}/>
-				<ProfileName name={this.props.user.name}/>
 				<ProfileLink username={this.props.user.username}/>
+				<ProfileName name={this.props.user.name}/>
 			</div>
 			)
 	}
