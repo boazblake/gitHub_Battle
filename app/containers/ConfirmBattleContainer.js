@@ -12,7 +12,7 @@ var ConfirmBattleContainer = React.createClass({
 		console.log('get inital state')
 		return {
 			isLoading:true,
-			playersinfo:[]
+			playersInfo:[]
 		}
 	},
 
