@@ -20163,6 +20163,7 @@
 	var Home = __webpack_require__(232);
 
 	var PromptContainer = __webpack_require__(234);
+	var ConfirmBattleContainer = __webpack_require__(236);
 
 	var Routes = React.createElement(
 		Router,
@@ -20172,7 +20173,8 @@
 			{ path: '/', component: Main },
 			React.createElement(IndexRoute, { component: Home }),
 			React.createElement(Route, { path: 'playerOne', header: 'Welcome Player One', component: PromptContainer }),
-			React.createElement(Route, { path: 'playerTwo/:playerOne', header: 'Welcome Player Two', component: PromptContainer })
+			React.createElement(Route, { path: 'playerTwo/:playerOne', header: 'Welcome Player Two', component: PromptContainer }),
+			React.createElement(Route, { path: '/battle', component: ConfirmBattleContainer })
 		)
 	);
 
@@ -25703,6 +25705,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(2);
+	var ReactRouter = __webpack_require__(170);
 	var transparentBg = __webpack_require__(233).transparentBg;
 	var Link = ReactRouter.Link;
 
@@ -25758,51 +25761,146 @@
 
 	var transparentBg = __webpack_require__(233).transparentBg;
 
+	var Prompt = __webpack_require__(235);
+
 	var PromptContainer = React.createClass({
 		displayName: 'PromptContainer',
 
+		contextTypes: {
+			router: React.PropTypes.object.isRequired
+		},
+
+		getInitialState: function () {
+			return {
+				username: ''
+			};
+		},
+
+		_handledateUserName: function (evt) {
+			this.setState({
+				username: evt.target.value
+			});
+		},
+
+		_handleSubmitUser: function (evt) {
+			evt.preventDefault();
+			var username = this.state.username;
+			this.setState({
+				username: ''
+			});
+			if (this.props.routeParams.playerOne) {
+				this.context.router.push({
+					pathname: '/battle',
+					query: {
+						playerOne: this.props.routeParams.playerOne,
+						playerTwo: this.state.username
+					}
+				});
+				console.log(this.context);
+			} else {
+				this.context.router.push('/playerTwo/' + this.state.username);
+			}
+		},
+
 		render: function () {
-			console.log('this in prompt container>>>>>>>', this);
-			return React.createElement(
-				'div',
-				{ className: 'jumbotron col-sm-6 col-sm-offset-3 text-center', style: transparentBg },
-				React.createElement(
-					'h1',
-					null,
-					this.props.route.header
-				),
-				React.createElement(
-					'div',
-					{ className: 'col-sm-12' },
-					React.createElement(
-						'form',
-						null,
-						React.createElement(
-							'div',
-							{ className: 'form-group' },
-							React.createElement('input', {
-								className: 'form-control',
-								placeholder: 'Github Username',
-								type: 'text' })
-						),
-						React.createElement(
-							'div',
-							{ className: 'form-group col-sm-4 col-sm-offset-4' },
-							React.createElement(
-								'button',
-								{
-									className: 'btn btn-block btn-success',
-									type: 'submit' },
-								'CONTINUE'
-							)
-						)
-					)
-				)
-			);
+			return React.createElement(Prompt, {
+				_onSubmitUser: this._handleSubmitUser,
+				_onUpdateUser: this._handledateUserName,
+				header: this.props.route.header,
+				username: this.state.username });
 		}
 	});
 
 	module.exports = PromptContainer;
+
+/***/ },
+/* 235 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(2);
+
+	var PropTypes = React.PropTypes;
+
+	var transparentBg = __webpack_require__(233).transparentBg;
+
+	function Prompt(props) {
+		return React.createElement(
+			'div',
+			{ className: 'jumbotron col-sm-6 col-sm-offset-3 text-center', style: transparentBg },
+			React.createElement(
+				'h1',
+				null,
+				props.header
+			),
+			React.createElement(
+				'div',
+				{ className: 'col-sm-12' },
+				React.createElement(
+					'form',
+					{ onSubmit: props._onSubmitUser },
+					React.createElement(
+						'div',
+						{ className: 'form-group' },
+						React.createElement('input', {
+							className: 'form-control',
+							placeholder: 'Github Username',
+							onChange: props._onUpdateUser,
+							value: props.username,
+							type: 'text' })
+					),
+					React.createElement(
+						'div',
+						{ className: 'form-group col-sm-4 col-sm-offset-4' },
+						React.createElement(
+							'button',
+							{
+								className: 'btn btn-block btn-success',
+								type: 'submit' },
+							'CONTINUE'
+						)
+					)
+				)
+			)
+		);
+	}
+
+	Prompt.propTypes = {
+		header: PropTypes.string.isRequired,
+		_onUpdateUser: PropTypes.func.isRequired,
+		_onSubmitUser: PropTypes.func.isRequired,
+		username: PropTypes.string.isRequired
+	};
+
+	module.exports = Prompt;
+
+/***/ },
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(2);
+	var ConfirmBattle = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../components/ConfirmBattle\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var ConfirmBattleContainer = React.createClass({
+		displayName: 'ConfirmBattleContainer',
+
+
+		contextTypes: {
+			router: React.PropTypes.object.isRequired
+		},
+
+		getInitialState: function () {
+			return {
+				isLoading: true,
+				playersinfo: []
+			};
+		},
+
+		render: function () {
+			return React.createElement(ConfirmBattle, null);
+		}
+	});
+
+	module.exports = ConfirmBattleContainer;
 
 /***/ }
 /******/ ]);

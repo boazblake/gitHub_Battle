@@ -1,8 +1,7 @@
 var React = require('react');
-
 var transparentBg = require('../styles').transparentBg
-
 var Prompt = require('../components/prompts')
+
 
 var PromptContainer = React.createClass({
 	contextTypes: {
@@ -40,8 +39,6 @@ var PromptContainer = React.createClass({
 			this.context.router.push('/playerTwo/' + this.state.username)
 		}
 	},
-
-
 
 	render:function (){
 		return  (
