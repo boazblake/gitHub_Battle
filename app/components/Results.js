@@ -5,9 +5,10 @@ var UserDetailsWrapper = require('./UserDetailsWrapper');
 var UserDetails = require('./UserDetails');
 var Link = require('react-router').Link;
 var MainContainer = require('./MainContainer');
+var Loading = require('./Loading')
 
 function Results (props) {
-	if (isLoading) return (<p>LOADING</p>)
+	if (isLoading) return (<Loading />)
 }
 
 function StartOver (){
