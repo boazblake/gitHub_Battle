@@ -1,15 +1,21 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-
-
-function puke (obj) {
-	return <pre>{JSON.stringify(obj, 2, ' ')}</pre>
-}
+var styles = require('../styles')
 
 function Results (props) {
 	console.log('props in results', props)
 	return (
-		<div>Results: {puke(props)}</div>
+		<div className='jumbotron col-sm-12 text-center' styles={styles.transparentBg}>
+			<h1>Results</h1>
+			<div classname='col-sm-8 col-sm-offset-2'>
+				<UserDetailsWrapper header='winner'>
+					<UserDetails score={props.scores[WW]} info={props.playersInfo[WW]} />
+				</UserDetailsWrapper>
+				<UserDetailsWrapper header='loser'>
+					<UserDetails score={props.scores[LL]} info={props.playersInfo[LL]} />
+				</UserDetailsWrapper>
+			</div>
+		</div>
 	)
 }
 

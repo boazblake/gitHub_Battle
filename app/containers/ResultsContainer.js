@@ -1,6 +1,6 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var Results = require('../components/Results')
+var Results = require('../components/Results');
 var githubHelpers = require('../utils/githubHelpers')
 
 var ResultsContainer = React.createClass({
@@ -24,6 +24,7 @@ var ResultsContainer = React.createClass({
 	},
 
 	render:function(){
+		console.log(this.state)
 		return (
 			<Results 
 				isLoading={this.state.isLoading}
