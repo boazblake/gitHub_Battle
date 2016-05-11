@@ -24,7 +24,6 @@ var ResultsContainer = React.createClass({
 	},
 
 	render:function(){
-		console.log(this.state)
 		return (
 			<Results 
 				isLoading={this.state.isLoading}

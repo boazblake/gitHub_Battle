@@ -1,28 +1,21 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var styles = require('../styles/index');
+var space = require('../styles').space;
 var Link = require('react-router').Link;
 var UserDetails = require('./UserDetails');
 var UserDetailsWrapper = require('./UserDetailsWrapper');
-
-
-
-function puke (obj) {
-	return <pre>{JSON.stringify(obj, null, ' ')}</pre>
-}
+var MainContainer = require('./MainContainer');
 
 function ConfirmBattle( props ) {
-
 	ConfirmBattle.PropTypes = {
 		isLoading: PropTypes.bool.isRequired,
 		playersInfo:PropTypes.array.isRequired,
 		onInitiateBattle:PropTypes.func.isRequired
 	}
 
-	console.log('props', props)
 	return props.isLoading === true
 	? <p> LOADING ! </p>
-	: <div className='jumbotron col-sm-12 text-center' styles={styles.transparentBg}>
+	: <MainContainer>
 		<h1>CONFIRM PLAYERS</h1>
 		<div className='col-sm-8 col-sm-offset-2'>
 			<UserDetailsWrapper header='Player One'>
@@ -34,14 +27,14 @@ function ConfirmBattle( props ) {
 		</div>
 
 		<div className='col-sm-8 col-sm-offset-2'>
-			<div className='col-sm-12' styles={styles.space}>
+			<div className='col-sm-12' styles={space}>
 				<button 
 					className='btn btn-lg btn-success' 
 					onClick={props.onInitiateBattle} >
 					INITIATE BATTLE
 				</button>
 			</div>
-			<div className='col-sm-12' styles={styles.space} >
+			<div className='col-sm-12' styles={space} >
 				<Link to='/playerOne'>
 					<button 
 						className='btn btn-lg btn-danger'>
@@ -50,7 +43,7 @@ function ConfirmBattle( props ) {
 				</Link>
 			</div>
 		</div>
-	</div>
+	</MainContainer>
 };
 
 module.exports = ConfirmBattle;
