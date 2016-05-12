@@ -8,7 +8,7 @@ var MainContainer = require('./MainContainer');
 var Loading = require('./Loading')
 
 function Results (props) {
-	if (isLoading) return (<Loading />)
+	if (isLoading) return (<Loading speed={200} text={'almost'}/>)
 }
 
 function StartOver (){
@@ -21,7 +21,7 @@ function StartOver (){
 	)
 }
 
-function Results (props) {
+function Tie (props) {
 	if (props.scores[0] === props.scores[1]) {
 		<MainContainer>
 			<h1>Its a Tie!</h1>
@@ -55,3 +55,4 @@ Results.propTypes= {
 }
 
 module.exports = Results
+module.exports = Tie
