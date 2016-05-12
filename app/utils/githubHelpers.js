@@ -30,6 +30,8 @@ function getPlayersData (player) {
 }
 
 function calculateScores (players) {
+	console.log('calculate Scores players 0', players[0].followers * 3 + players[0].totalStars)
+	console.log('calculate Scores players 1', players[1].followers * 3 + players[1].totalStars)
 	return [
 		players[0].followers * 3 + players[0].totalStars,
 		players[1].followers * 3 + players[1].totalStars

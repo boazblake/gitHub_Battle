@@ -7,8 +7,16 @@ var Link = require('react-router').Link;
 var MainContainer = require('./MainContainer');
 var Loading = require('./Loading')
 
+
+Results.PropTypes= {
+	isLoading:PropTypes.bool.isRequired,
+	playersInfo:PropTypes.array.isRequired,
+	scores: PropTypes.array.isRequired
+}
+
 function Results (props) {
-	if (isLoading) return (<Loading speed={200} text={'almost'}/>)
+	console.log(props)
+	if (!props.isLoading) return (<Loading speed={500} text={'dueling'}/>)
 }
 
 function StartOver (){
@@ -55,13 +63,6 @@ function Tie (props) {
 			<StartOver />
 		</MainContainer>
 	)
-}
-
-
-Results.propTypes= {
-	isLoading:PropTypes.bool.isRequired,
-	playersInfo:PropTypes.array.isRequired,
-	scores: PropTypes.array.isRequired
 }
 
 module.exports = Results
