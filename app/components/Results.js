@@ -22,12 +22,22 @@ function StartOver (){
 }
 
 function Tie (props) {
-	if (props.scores[0] === props.scores[1]) {
-		<MainContainer>
-			<h1>Its a Tie!</h1>
-			<StartOver />
-		</MainContainer>
+
+	console.log('Tie function was called', props)
+	console.log('props.scores[0]>>>>>', props.scores[0])
+	console.log('props.scores[1]>>>>>>>', props.scores[1])
+
+	if (props.scores[0] || props.scores[0] === 0) {
+		if (props.scores[0] === props.scores[1]) {
+			return (
+				<MainContainer>
+					<h1>Its a Tie!</h1>
+					<StartOver />
+				</MainContainer>
+			)
+		}
 	}
+
 
 	var winningIndex = props.scores[0] > props.scores[1] ? 0: 1;
 	var losingIndex = winningIndex === 0 ? 1: 0;

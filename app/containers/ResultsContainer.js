@@ -11,6 +11,10 @@ var ResultsContainer = React.createClass({
 		}
 	},
 
+	componentWillReceiveProps:function(){
+		console.log('component Will Receive Props')
+	},
+
 	componentDidMount: function(){
 		console.log(this.props.location.state.playersInfo)
 		githubHelpers.battle(this.props.location.state.playersInfo)
