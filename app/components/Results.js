@@ -8,6 +8,7 @@ var MainContainer = require('./MainContainer');
 var Loading = require('./Loading')
 
 function Results (props) {
+
 	if (isLoading) return (<Loading />)
 }
 
@@ -22,11 +23,18 @@ function StartOver (){
 }
 
 function Results (props) {
-	if (props.scores[0] === props.scores[1]) {
-		<MainContainer>
-			<h1>Its a Tie!</h1>
-			<StartOver />
-		</MainContainer>
+
+	if ( props.scores[0] || (props.scores[0] === 0) ){
+		console.log('props.scores',props.scores)
+
+		if (props.scores[0] === props.scores[1]) {
+			return (
+				<MainContainer>
+					<h1>Its a Tie!</h1>
+					<StartOver />
+				</MainContainer>
+			)
+		}
 	}
 
 	var winningIndex = props.scores[0] > props.scores[1] ? 0: 1;
