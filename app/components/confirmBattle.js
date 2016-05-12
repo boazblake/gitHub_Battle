@@ -16,7 +16,7 @@ function ConfirmBattle( props ) {
 	}
 
 	return props.isLoading === true
-	? <Loading speed={200} text={'almost'}/>
+	? <Loading speed={200} text={'Searching'}/>
 	: <MainContainer>
 		<h1>CONFIRM PLAYERS</h1>
 		<div className='col-sm-8 col-sm-offset-2'>

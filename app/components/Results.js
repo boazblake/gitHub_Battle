@@ -55,4 +55,3 @@ Results.propTypes= {
 }
 
 module.exports = Results
-module.exports = Tie
