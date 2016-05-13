@@ -1,11 +1,13 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var space = require('../styles').space;
 var Link = require('react-router').Link;
 var UserDetails = require('./UserDetails');
 var UserDetailsWrapper = require('./UserDetailsWrapper');
 var MainContainer = require('./MainContainer');
 var Loading = require('./Loading');
+var transparentBg = require('../styles').transparentBg;
+var space = require('../styles').space;
+
 
 
 function ConfirmBattle( props ) {
